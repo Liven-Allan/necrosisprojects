@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Necrosis Image Upload</title>
+</head>
+<body>
+    <h1>Upload an Image for Necrosis Analysis</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image" required>
+        <button type="submit">Upload</button>
+    </form>
+    {% if result %}
+        <h2>Results:</h2>
+        <p>Necrosis Percentage: {{ result.percentage_necrosis }}%</p>
+        <p>Lesion Count: {{ result.lesion_count }}</p>
+        <img src="{{ result.image }}" alt="Processed Image" style="max-width:500px;">
+    {% endif %}
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html> 
